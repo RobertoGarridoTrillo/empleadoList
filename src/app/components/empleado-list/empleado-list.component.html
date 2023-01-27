@@ -1,0 +1,36 @@
+<div class="container">
+
+<app-count-empleados
+  [todos] = "obtenerTotalEmpleados()"
+  [masculino] = "obtenerTotalMasculinos()"
+  [femenino] = "obtenerTotalFemeninos()"
+  (radioEmitter) = "tableChange($event)">
+</app-count-empleados>
+
+  <div class="card mt-3">
+    <div class="card-body">
+      <table class="table">
+        <thead>
+        <tr>
+          <th>Legajo</th>
+          <th>Nombre</th>
+          <th>Apellido</th>
+          <th>Sexo</th>
+          <th>salario</th>
+        </tr>
+        </thead>
+        <tbody>
+        <ng-container *ngFor="let empleado of listEmpleados">
+          <tr *ngIf="tableSeleccionado === 'Todos' || tableSeleccionado === empleado.sexo">
+            <td>{{empleado.legajo}}</td>
+            <td>{{empleado.nombre}}</td>
+            <td>{{empleado.apellido}}</td>
+            <td>{{empleado.sexo}}</td>
+            <td>{{empleado.salario | currency}}</td>
+          </tr>
+        </ng-container>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
